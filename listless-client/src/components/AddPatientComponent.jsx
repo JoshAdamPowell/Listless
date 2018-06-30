@@ -1,5 +1,5 @@
 import React from 'react';
-import InputField from './InputField';
+import ApiClient from '../services/ApiClient'
 
 export default class AddPatientComponent extends React.Component {
     constructor(props) {
@@ -8,7 +8,7 @@ export default class AddPatientComponent extends React.Component {
         this.state = {
             form: {
                 nameField: {
-                    name: 'Name',
+                    name: 'Last Name',
                     type: 'text'
                 },
                 dobField: {
@@ -39,12 +39,23 @@ export default class AddPatientComponent extends React.Component {
 
             if (!fieldObject.ref.value) {
                 this.setState({
-                    error: `You have to enter a ${fieldObject.name} for the patient!`
+                    status: `You have to enter a ${fieldObject.name} for the patient!`
                 })
                 return;
             }
         }
-        this.setState({error: null})
+        const patient = {
+            LastName : form.nameField.ref.value,
+            DateOfBirth : form.dobField.ref.value,
+            HospitalNumber : form.hospitalNumberField.ref.value,
+            MedicalHistory : form.medicalHistoryField.ref.value,
+            Location: form.locationField.ref.value
+        }
+        ApiClient.postPatient(patient).then(
+        this.setState({status: 'Patient added successfully!'}
+        )
+        )
+
     }
 
 generateForm(){
@@ -71,7 +82,7 @@ generateInput(field){
                 {this.generateForm()}
                 <input type='submit' onClick={() => this.checkForm()} />
                 <div>
-                    {this.state.error ? this.state.error : null}
+                    {this.state.status ? this.state.status : null}
                 </div>
             </div>);
     }
