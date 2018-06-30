@@ -30,7 +30,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <p>
-          {this.state.patientsList.map(patient => patient.surname).join(', ')}
+          {this.state.patientsList.map(patient => patient.LastName).join(', ')}
         </p>
       </div>
     );
@@ -40,7 +40,7 @@ class App extends Component {
     ApiClient
       .getPatientsList()
       .then(
-        patientsList => this.setState({patientsList: [patientsList], error: undefined}),
+        patientsList => this.setState({patientsList: patientsList, error: undefined}),
         error => this.setState({error: error.message})
       )
   }
