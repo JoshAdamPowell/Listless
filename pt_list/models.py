@@ -5,26 +5,30 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Location(models.Model):
+    Location = models.CharField(max_length=50)
+
 class Patient(models.Model):
-    hosp_number = models.CharField(max_length=20)
-    surname = models.CharField(max_length=50)
-    medical_history = models.TextField()
-    version_number = models.IntegerField(default=1)
+    HospitalNumber = models.CharField(max_length=20)
+    LastName = models.CharField(max_length=50)
+    DateOfBirth = models.DateField()
+    MedicalHistory = models.TextField()
+    
 
 
-class PatientProblems(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.PROTECT)
-    problem = models.CharField(max_length=255)
-    version_number = models.IntegerField(default=1)
-
-
+class PatientProblem(models.Model):
+    Patient = models.ForeignKey(Patient, on_delete=models.PROTECT, related_name="Problems")
+    Problem = models.CharField(max_length=255)
+    Active = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.Problem
 
 class JobStatus(models.Model):
     job_status_description = models.CharField(max_length=255)
 
-
 class Job(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.PROTECT)
-    job = models.CharField(max_length=255)
-    job_status = models.ForeignKey(JobStatus, on_delete=models.PROTECT)
-    version_number = models.IntegerField(default=1)
+    Patient = models.ForeignKey(Patient, on_delete=models.PROTECT)
+    Job = models.CharField(max_length=255)
+    JobStatus = models.ForeignKey(JobStatus, on_delete=models.PROTECT)
+ 
