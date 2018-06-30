@@ -45,35 +45,35 @@ export default class AddPatientComponent extends React.Component {
             }
         }
         const patient = {
-            LastName : form.nameField.ref.value,
-            DateOfBirth : form.dobField.ref.value,
-            HospitalNumber : form.hospitalNumberField.ref.value,
-            MedicalHistory : form.medicalHistoryField.ref.value,
+            LastName: form.nameField.ref.value,
+            DateOfBirth: form.dobField.ref.value,
+            HospitalNumber: form.hospitalNumberField.ref.value,
+            MedicalHistory: form.medicalHistoryField.ref.value,
             Location: form.locationField.ref.value
         }
         ApiClient.postPatient(patient).then(
-        this.setState({status: 'Patient added successfully!'}
-        )
+            this.setState({ status: 'Patient added successfully!' }
+            )
         )
 
     }
 
-generateForm(){
-const {form} = this.state
-    const forms = [];
-    for (let field in form) {
-        let fieldObject = form[field]
-        forms.push(this.generateInput(fieldObject))
+    generateForm() {
+        const { form } = this.state
+        const forms = [];
+        for (let field in form) {
+            let fieldObject = form[field]
+            forms.push(this.generateInput(fieldObject))
+        }
+        return forms;
     }
-    return forms;
-}
 
-generateInput(field){
-    return (<div>
-        {field.name}
-        <input type={field.type}  onChange={() => this.updateInputValue} ref={(el) => field.ref = el}/>
-    </div>)
-}
+    generateInput(field) {
+        return (<div>
+            {field.name}
+            <input type={field.type} onChange={() => this.updateInputValue} ref={(el) => field.ref = el} />
+        </div>)
+    }
 
     render() {
         const { form } = this.state;
