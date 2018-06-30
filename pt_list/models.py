@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 class Patient(models.Model):
     hosp_number = models.CharField(max_length=20)
     surname = models.CharField(max_length=50)
+    medical_history = models.TextField()
     version_number = models.IntegerField(default=1)
 
 
@@ -16,11 +17,6 @@ class PatientProblems(models.Model):
     problem = models.CharField(max_length=255)
     version_number = models.IntegerField(default=1)
 
-
-class MedicalHistory(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.PROTECT)
-    history_item = models.CharField(max_length=255)
-    version_number = models.IntegerField(default=1)
 
 
 class JobStatus(models.Model):
