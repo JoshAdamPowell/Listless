@@ -1,5 +1,5 @@
 class Config {
-  static apiUrl = "http://localhost:3000/api";
+  static apiUrl = "https://hack.hda-services.co.uk";
 }
 
 export default Config;
