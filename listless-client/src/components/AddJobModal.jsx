@@ -79,7 +79,7 @@ export default class AddJobModal extends React.Component {
                 </div>
             )
         } else {
-            return <button className='AddJobModal-add-job-button' onClick={() => this.openModal}> Add Job </button>
+            return <button className='AddJobModal-add-job-button' onClick={() => this.openModal()}> Add Job </button>
         }
     }
 }
