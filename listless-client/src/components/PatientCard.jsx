@@ -62,7 +62,7 @@ export default class PatientCard extends Component {
             </div>
           </div>
           <p className="PatientCard-patient-details-hospital-number">{patient.HospitalNumber}</p>
-          <button onClick={() => this.edit()} type="button">Edit</button>
+          <button className="PatientCard-current-problems-single" onClick={() => this.edit()} type="button">Edit</button>
         </div>
         <div className="PatientCard-medical-history">
           <h2>Medical History</h2>

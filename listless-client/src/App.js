@@ -26,9 +26,9 @@ class App extends Component {
               <li>
                 <Link to="/addPatient">Add Patient</Link>
               </li>
-              <li>
-              <Link to="/addJob">Add Job</Link>
-                </li>
+              {/*<li>*/}
+              {/*<Link to="/addJob">Add Job</Link>*/}
+                {/*</li>*/}
             </ul>
             <Route exact path="/" component={ViewPatients}/>
             <Route path="/addPatient" component={AddPatient}/>
