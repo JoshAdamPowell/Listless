@@ -1,11 +1,16 @@
 .PatientCard-container {
   display: flex;
-  margin: 16px;
+}
+
+.PatientCard-inner-container {
+  display: flex;
+  margin: 16px 16px 16px 0;
   background: white;
   padding: 30px;
   text-align: left;
-  border-radius: 4px;
+  border-radius: 0 4px 4px 0;
   box-shadow: 0 2px 2px 0 rgba(201,201,201,0.50);
+  flex-grow: 1;
 }
 
 .PatientCard-container h2 {
@@ -86,4 +91,29 @@
   font-size: 14px;
   font-weight: 400;
   border-radius: 3px;
+}
+
+.PatientCard-priority-high,
+.PatientCard-priority-fit,
+.PatientCard-priority-standard {
+  flex: 0 0 30px;
+  max-width: 30px;
+  border-radius: 4px 0 0 4px;
+  margin: 16px 0 16px 16px;
+}
+
+.PatientCard-priority-high {
+  background-color: #DA291C;
+}
+
+.PatientCard-priority-fit {
+  background-color: #78BE20;
+}
+.PatientCard-priority-standard {
+  background-color: white;
+}
+
+.PatientCard-priority-text {
+  transform: rotate(-90deg);
+  color: white;
 }
