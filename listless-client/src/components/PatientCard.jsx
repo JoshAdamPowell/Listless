@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import getAge from 'get-age';
+import Job from './Job'
 
 import './PatientCard.css';
 import femaleLogo from '../images/F.svg';
@@ -42,7 +43,7 @@ export default class PatientCard extends Component {
         </div>
         <div className="PatientCard-jobs">
           <h2>Jobs</h2>
-            {patient.Jobs.map(job => <p key={job.Id}>{job.Job}</p>)}
+            {patient.Jobs.map(job => <Job key={job.Id} job={job}/>)}
         </div>
       </div>
     );
