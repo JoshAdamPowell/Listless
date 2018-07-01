@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import getAge from 'get-age';
 
 import './PatientCard.css';
 
@@ -6,13 +7,14 @@ export default class PatientCard extends Component {
 
   render() {
     const { patient } = this.props;
+    const patientAge = getAge(patient.DateOfBirth);
 
     return (
       <div className="PatientCard-container">
         <div className="PatientCard-patient-details">
           <p>{patient.LocationWard} {patient.LocationBay}.{patient.LocationBed}</p>
           <p>{patient.FirstName} {patient.LastName}</p>
-          <p><span className="PatientCard-gender">{patient.Gender}</span> {patient.Age}</p>
+          <p><span className="PatientCard-gender">{patient.Gender}</span> {patientAge}</p>
           <p>{patient.HospitalNumber}</p>
         </div>
         <div className="PatientCard-medical-history">
