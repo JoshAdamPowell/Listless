@@ -1,16 +1,17 @@
 .Job-job{
     height: 20px;
-    margin: 12px;
+    margin: 12px 0;
     color: white;
     font-family: Frutiger, Arial;
     border-radius: 5px;
     padding: 8px;
     display: flex;
     justify-content: space-between;
+    
 }
 
 .background-red{
-    background-color: #8A1538
+    background-color: #DA291C;
 }
 
 .background-amber{
