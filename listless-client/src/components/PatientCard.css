@@ -19,3 +19,20 @@
   color: white;
   font-weight: bold;
 }
+
+.PatientCard-priority-high,
+.PatientCard-priority-fit {
+  margin: auto;
+}
+
+.PatientCard-priority-high {
+  background-color: #DA291C;
+}
+
+.PatientCard-priority-fit {
+  background-color: #78BE20;
+}
+
+.PatientCard-priority-text {
+  transform: rotate(-90deg);
+}
