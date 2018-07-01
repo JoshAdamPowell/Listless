@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date, timedelta, datetime
 
 # Create your models here.
 
@@ -11,12 +12,15 @@ class Location(models.Model):
 
 class Patient(models.Model):
     HospitalNumber = models.CharField(max_length=20)
+    FirstName = models.CharField(max_length=50)
+    Gender = models.CharField(max_length=2)
     LastName = models.CharField(max_length=50)
     DateOfBirth = models.DateField()
     MedicalHistory = models.TextField()
     LocationWard = models.CharField(max_length=30)
     LocationBay = models.IntegerField()
     LocationBed = models.IntegerField()
+    
     priority_choices = (
         (1, "High"),
         (2, "Standard"),
@@ -28,6 +32,7 @@ class Patient(models.Model):
 
     def __str__(self):
         return str(self.LocationBay) + "." + str(self.LocationBed) + " " + self.LastName + " - " + self.HospitalNumber
+
 
 
 class PatientProblem(models.Model):
