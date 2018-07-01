@@ -9,3 +9,25 @@
   padding: 20px;
   color: white;
 }
+
+.navigation ul {
+  display: flex;
+  align-text: right;
+  width: 100%;
+  list-style: none;
+  height: 66px;
+}
+
+.navigation li {
+  display: inline-block;
+}
+
+.navigation li a{
+  background: #AE2573;
+  margin: 0 10px 10px 0;
+  padding: 12px 18px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 3px;
+}

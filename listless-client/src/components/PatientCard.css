@@ -27,6 +27,11 @@
   overflow: hidden;
 }
 
+.PatientCard-patient-details{
+  border-right: 2px rgb(226, 226, 226) solid;
+  padding-right: 10px;
+}
+
 .PatientCard-medical-history {
   flex: 0 0 38%;
   margin: 1%;

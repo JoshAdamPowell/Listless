@@ -1,5 +1,6 @@
 import React from 'react';
 import ApiClient from '../services/ApiClient'
+import './AddPatient.css';
 
 export default class AddPatient extends React.Component {
   fields = {
@@ -106,93 +107,112 @@ export default class AddPatient extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <form>
-          <label>
-            First name:
-            <input
-              name="firstName"
-              type="text"
-              checked={this.state.firstName}
-              onChange={this.handleInputChange}/>
+            <label className="list-item"className="list-item">
+                <p className="list-name">First Name:</p>
+                <div className="list-input">
+                    <input
+                    name="firstName"
+                    type="text"
+                    checked={this.state.firstName}
+                    onChange={this.handleInputChange}/>
+                </div>
+            </label>
+          <br/>
+          <label className="list-item">
+            <p className="list-name">Last name:</p>
+            <div className="list-input">
+                <input
+                name="lastName"
+                type="text"
+                checked={this.state.lastName}
+                onChange={this.handleInputChange}/>
+            </div>
           </label>
           <br/>
-          <label>
-            Last name:
-            <input
-              name="lastName"
-              type="text"
-              checked={this.state.lastName}
-              onChange={this.handleInputChange}/>
+          <label className="list-item">
+            <p className="list-name">Gender:</p>
+            <div className="list-input">
+                <select
+                name="gender"
+                value={this.state.gender}
+                onChange={this.handleInputChange}>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+                </select>
+            </div>
           </label>
           <br/>
-          <label>
-            Gender:
-            <select
-              name="gender"
-              value={this.state.gender}
-              onChange={this.handleInputChange}>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-              <option value="O">Other</option>
-            </select>
+          <label className="list-item">
+            <p className="list-name">Date of Birth:</p>
+            <div className="list-input">
+                <input
+                name="dateOfBirth"
+                type="date"
+                checked={this.state.dateOfBirth}
+                onChange={this.handleInputChange}/>
+            </div>
           </label>
           <br/>
-          <label>
-            Date of Birth:
-            <input
-              name="dateOfBirth"
-              type="date"
-              checked={this.state.dateOfBirth}
-              onChange={this.handleInputChange}/>
-          </label>
-          <br/>
-          <label>
-            Hospital number:
+          <label className="list-item">
+            <p className="list-name">Hospital number:</p>
+            <div className="list-input">
             <input
               name="hospitalNumber"
               type="number"
               checked={this.state.hospitalNumber}
               onChange={this.handleInputChange}/>
+              </div>
           </label>
           <br/>
-          <label>
-            Medical History:
-            <input
-              name="medicalHistory"
-              type="text"
-              checked={this.state.medicalHistory}
-              onChange={this.handleInputChange}/>
+          <label className="list-item">
+            <p className="list-name">Medical History:</p>
+            <div className="list-input">
+                <input
+                name="medicalHistory"
+                type="text"
+                checked={this.state.medicalHistory}
+                onChange={this.handleInputChange}
+                className="medical-history"/>
+            </div>
           </label>
           <br/>
-          <label>
-            Location Bay:
+          <label className="list-item">
+            <p className="list-name">Location Bay:</p>
+            <div className="list-input">
             <input
               name="locationBay"
               type="number"
               checked={this.state.locationBay}
               onChange={this.handleInputChange}/>
+              </div>
           </label>
           <br/>
-          <label>
-            Location Bed:
+          <label className="list-item">
+            <p className="list-name">Location Bed:</p>
+            <div className="list-input">
             <input
               name="locationBed"
               type="number"
               checked={this.state.locationBed}
               onChange={this.handleInputChange}/>
+              </div>
           </label>
           <br/>
-          <label>
-            Location Ward:
+          <label className="list-item">
+            <p className="list-name">Location Ward:</p>
+            <div className="list-input">
             <input
               name="locationWard"
               type="text"
               checked={this.state.locationWard}
               onChange={this.handleInputChange}/>
+              </div>
           </label>
         </form>
-        <input type='submit' onClick={() => this.submit()}/>
+        <input className="submit" type='submit' onClick={() => this.submit()}/>
         <div>
           {this.state.status ? this.state.status : null}
         </div>
