@@ -46,6 +46,7 @@ export default class Job extends React.Component {
                 if (window.confirm("Please confirm you've checked the results, this job will be hidden after today.")) {
                     newStatus = this.JobStates.ResultsChecked
                 }
+                break;
         }
         const job = this.state.job;
         job.JobStatus = newStatus;
