@@ -16,7 +16,9 @@ export default class PatientCard extends Component {
             <p>{patient.MedicalHistory}</p>
         </div>
         <div className="PatientCard-current-problems">
-            {patient.PatientProblems.map(problem => <p key={problem.Id}>{problem.Problem}</p>)}
+            {patient.Problems
+                .filter(problem => problem.Active)
+                .map(problem => <p key={problem.id}>{problem.Problem}</p>)}
         </div>
         <div className="PatientCard-jobs">
             {patient.Jobs.map(job => <p key={job.Id}>{job.Job}</p>)}

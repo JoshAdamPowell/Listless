@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
 import ViewPatients from "./components/ViewPatients";
+
+import './App.css';
 
 class App extends Component {
   render() {
