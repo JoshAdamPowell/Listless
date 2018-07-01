@@ -14,15 +14,12 @@ export default class PatientCard extends Component {
     return (
       <div className="PatientCard-container">
         <div className="PatientCard-patient-details">
-          <p>{patient.LocationWard} {patient.LocationBay}.{patient.LocationBed}</p>
-          <p>{patient.FirstName} {patient.LastName}</p>
-          <p><span className="PatientCard-gender">{patient.Gender}</span> {patientAge}</p>
           <p className="PatientCard-patient-details-ward-title">WARD / BED</p>
-          <p className="PatientCard-patient-details-ward">{patient.Ward} / {patient.Bed}</p>
+          <p className="PatientCard-patient-details-ward">{patient.LocationWard} {patient.LocationBay}.{patient.LocationBed}</p>
           <p className="PatientCard-patient-details-name">{patient.FirstName} {patient.LastName}</p>
           <p>
             <img src={patient.Gender === 'F' ? femaleLogo : maleLogo} alt=""/>
-            <span className="PatientCard-patient-details-gender">{patient.Gender}</span> {patient.Age}
+            <span className="PatientCard-patient-details-gender">{patient.Gender}</span> {patientAge}
           </p>
           <p>{patient.HospitalNumber}</p>
         </div>
