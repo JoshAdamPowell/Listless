@@ -17,10 +17,10 @@ export default class PatientCard extends Component {
           <p className="PatientCard-patient-details-ward-title">WARD / BED</p>
           <p className="PatientCard-patient-details-ward">{patient.LocationWard} {patient.LocationBay}.{patient.LocationBed}</p>
           <p className="PatientCard-patient-details-name">{patient.FirstName} {patient.LastName}</p>
-          <p>
-            <img src={patient.Gender === 'F' ? femaleLogo : maleLogo} alt=""/>
-            <span className="PatientCard-patient-details-gender">{patient.Gender}</span> {patientAge}
-          </p>
+          <div>
+            <img className="PatientCard-patient-details-sex" src={patient.Gender === 'F' ? femaleLogo : maleLogo} alt=""/>
+            <p>{patientAge}</p>
+          </div>
           <p>{patient.HospitalNumber}</p>
         </div>
         <div className="PatientCard-medical-history">

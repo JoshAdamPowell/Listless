@@ -19,6 +19,7 @@
 .PatientCard-jobs {
   flex: 0 0 18%;
   margin: 1%;
+  overflow: hidden;
 }
 
 .PatientCard-medical-history {
@@ -33,14 +34,18 @@
 }
 
 .PatientCard-patient-details-ward {
-  font-size: 32px;
+  font-size: 30px;
   margin: 0;
   color: #444;
 }
 
 .PatientCard-patient-details-name {
-  font-size: 28px;
-  margin: 14px 0 0 0;
+  font-size: 26px;
+  margin: 14px 0 14px 0;
+}
+
+.PatientCard-patient-details-sex {
+  max-width: 100px;
 }
 
 .PatientCard-patient-details-gender {
