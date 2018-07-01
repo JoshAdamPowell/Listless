@@ -13,6 +13,7 @@ class Patient(models.Model):
     LastName = models.CharField(max_length=50)
     DateOfBirth = models.DateField()
     MedicalHistory = models.TextField()
+    LocationWard = models.CharField(max_length=30)
     LocationBay= models.IntegerField()
     LocationBed = models.IntegerField()
     priority_choices = (
@@ -20,6 +21,9 @@ class Patient(models.Model):
     (2, "Standard"),
     (3, "Medically fit for discharge"),
     )
+    PatientActive = models.BooleanField(default=True)
+    
+
     PatientPriority = models.IntegerField(choices=priority_choices, default=2)
     
     def __str__(self):
