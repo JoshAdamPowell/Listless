@@ -12,22 +12,26 @@
 
 .navigation ul {
   display: flex;
-  align-text: right;
+  align-items: center;
+  justify-content: flex-end;
   width: 100%;
   list-style: none;
   height: 66px;
+  padding: 0;
+  margin: 0;
 }
 
 .navigation li {
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .navigation li a{
-  background: #AE2573;
+  background: #005EB8;
   margin: 0 10px 10px 0;
   padding: 12px 18px;
   color: #fff;
   font-size: 14px;
   font-weight: 400;
   border-radius: 3px;
+  text-decoration: none;
 }
