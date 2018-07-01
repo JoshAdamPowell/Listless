@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ViewPatients from "./components/ViewPatients";
 
 import './App.css';
-import AddPatient from "./components/AddPatient";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import AddPatient from "./components/AddPatient";
 
 class App extends Component {
   render() {
@@ -16,14 +16,18 @@ class App extends Component {
           <div className="navigation">
             <ul>
               <li>
-                <Link to="/">Back to Patients</Link>
+                <Link to="/">View Patients</Link>
               </li>
               <li>
                 <Link to="/addPatient">Add Patient</Link>
               </li>
+              <li>
+              <Link to="/addJob">Add Job</Link>
+                </li>
             </ul>
             <Route exact path="/" component={ViewPatients}/>
             <Route path="/addPatient" component={AddPatient}/>
+            <Route path="/editPatient/:patientId" component={AddPatient} />
           </div>
         </Router>
       </div>
