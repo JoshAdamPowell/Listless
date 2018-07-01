@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import getAge from 'get-age';
 
 import './PatientCard.css';
 import femaleLogo from '../images/F.svg';
@@ -8,17 +9,14 @@ export default class PatientCard extends Component {
 
   render() {
     const { patient } = this.props;
-
-    // TODO: remove this once the API contains the correct info
-    patient.Age = 80;
-    patient.FirstName = 'John';
-    patient.Ward = '7';
-    patient.Bed = '03';
-    patient.Gender = 'F';
+    const patientAge = getAge(patient.DateOfBirth);
 
     return (
       <div className="PatientCard-container">
         <div className="PatientCard-patient-details">
+          <p>{patient.LocationWard} {patient.LocationBay}.{patient.LocationBed}</p>
+          <p>{patient.FirstName} {patient.LastName}</p>
+          <p><span className="PatientCard-gender">{patient.Gender}</span> {patientAge}</p>
           <p className="PatientCard-patient-details-ward-title">WARD / BED</p>
           <p className="PatientCard-patient-details-ward">{patient.Ward} / {patient.Bed}</p>
           <p className="PatientCard-patient-details-name">{patient.FirstName} {patient.LastName}</p>

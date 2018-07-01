@@ -1,0 +1,27 @@
+.Job-job{
+    height: 20px;
+    margin: 12px;
+    color: white;
+    font-family: Frutiger, Arial;
+    border-radius: 5px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.background-red{
+    background-color: #8A1538
+}
+
+.background-amber{
+    background-color: #ED8B00;
+}
+
+.background-green{
+    background-color: #009639;
+}
+
+.Job-reset{
+    fill: white;
+
+}
