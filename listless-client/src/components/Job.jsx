@@ -45,17 +45,28 @@ export default class Job extends React.Component {
                     newStatus = this.JobStates.ResultsChecked
                 }
         }
+        const job = this.state.job;
+        job.Status = newStatus;
+        this.setState({
+            job: job
+        })
     }
 
 
     generateReset() {
-        return (this.state.job.Status = this.JobStates.Done) ? 
-        <img onClick={() => this.onReset()} src='/Icons/reset.svg'/> : null
+        if (this.state.job.Status === this.JobStates.ResultsChecked) {
+            return (<img onClick={(event) => {
+                event.stopPropagation();
+                this.onReset()
+            }} src={Reset} className='Job-reset'/>);
+        }
     }
 
     onReset() {
+        const job = this.state.job;
+        job.Status = this.JobStates.NotDone
         this.setState({
-            job: this.JobStates.NotDone
+            job: job
         });
     }
 

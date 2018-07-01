@@ -5,6 +5,8 @@
     font-family: Frutiger, Arial;
     border-radius: 5px;
     padding: 8px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .background-red{
@@ -17,4 +19,9 @@
 
 .background-green{
     background-color: #009639;
+}
+
+.Job-reset{
+    fill: white;
+
 }
