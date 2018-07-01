@@ -13,3 +13,9 @@
 .PatientCard-medical-history {
   flex: 0 0 40%;
 }
+
+.PatientCard-gender {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+}
