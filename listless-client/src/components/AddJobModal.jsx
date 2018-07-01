@@ -22,7 +22,8 @@ export default class AddJobModal extends React.Component {
             Patient: patient.id
         }
         ApiClient.postJob(job)
-        this.setState()
+        job.JobStatus = 1
+        this.props.callback(job)
     }
 
     generateSuggestedJobs() {

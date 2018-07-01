@@ -55,9 +55,6 @@ export default class Job extends React.Component {
             'Patient': patient.id,
             'JobStatus' : newStatus
         })
-        this.setState({
-            job: job
-        })
     }
 
 

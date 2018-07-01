@@ -21,6 +21,12 @@ export default class PatientCard extends Component {
     this.setState( {redirectToEdit: true} );
   }
 
+  componentWillMount(){
+    this.setState({
+      patient: this.props.patient
+    })
+  }
+
   static getPriorityClass(priority) {
     switch (priority) {
       case patientPriorities.HIGH:
@@ -32,8 +38,16 @@ export default class PatientCard extends Component {
     }
   }
 
+  addJob(job){
+    const patient = this.state.patient;
+    patient.Jobs.push(job);
+    this.setState({
+      patient: patient
+    })
+  }
+
   render() {
-    const {patient} = this.props;
+    const {patient} = this.state;
     console.log(patient);
 
     if (this.state.redirectToEdit) {
@@ -80,7 +94,7 @@ export default class PatientCard extends Component {
         <div className="PatientCard-jobs">
           <h2>Jobs</h2>
             {patient.Jobs.map(job => <Job job={job} patient={patient}/>)}
-            <AddJobModal patient={patient} />
+            <AddJobModal patient={patient} callback={(x)=> this.addJob(x)}/>
         </div>
       </div>
       </div>
