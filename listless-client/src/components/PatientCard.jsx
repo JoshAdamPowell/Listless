@@ -14,13 +14,14 @@ export default class PatientCard extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {redirectToEdit: false};
+    this.state = { redirectToEdit: false };
   }
+
   edit () {
     this.setState( {redirectToEdit: true} );
   }
 
-  getPriorityClass(priority) {
+  static getPriorityClass(priority) {
     switch (priority) {
       case patientPriorities.HIGH:
         return 'high';
@@ -39,7 +40,7 @@ export default class PatientCard extends Component {
       return <Redirect push to={"/editPatient/" + patient.id}/>;
     }
     const patientAge = getAge(patient.DateOfBirth);
-    const priorityClass = this.getPriorityClass(patient.PatientPriority);
+    const priorityClass = PatientCard.getPriorityClass(patient.PatientPriority);
 
     // return <button onClick={this.handleOnClick} type="button">Button</button>;
     return (

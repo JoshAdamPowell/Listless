@@ -16,7 +16,7 @@ class App extends Component {
           <div className="navigation">
             <ul>
               <li>
-                <Link to="/">Back to Patients</Link>
+                <Link to="/">View Patients</Link>
               </li>
               <li>
                 <Link to="/addPatient">Add Patient</Link>
