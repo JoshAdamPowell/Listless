@@ -1,6 +1,7 @@
 import React from 'react';
 import ApiClient from '../services/ApiClient'
 import './AddPatient.css';
+import {Redirect} from "react-router";
 
 export default class AddPatient extends React.Component {
 
@@ -20,8 +21,13 @@ export default class AddPatient extends React.Component {
       medicalHistory: undefined,
       locationBay: undefined,
       locationBed: undefined,
-      locationWard: undefined
+      locationWard: undefined,
+      redirectToViewPatients: undefined
     };
+  }
+
+  goToViewPatients() {
+    this.setState( {redirectToViewPatients: true} );
   }
 
   componentDidMount() {
@@ -81,22 +87,26 @@ export default class AddPatient extends React.Component {
       LocationWard: this.state.locationWard
     };
 
+    let result;
+
     if (this.patientToEdit) {
-      ApiClient.putPatient(this.patientToEdit, patient)
-        .then(
-          result => this.setState({status: 'Patient updated successfully!'}),
-          error => this.setState({status: 'Error: ' + error.message})
-        )
+      result = ApiClient.putPatient(this.patientToEdit, patient)
     } else {
-      ApiClient.postPatient(patient)
-        .then(
-          result => this.setState({status: 'Patient added successfully!'}),
-          error => this.setState({status: 'Error: ' + error.message})
-        )
+      result = ApiClient.postPatient(patient)
     }
+
+    result
+      .then(
+        result => this.goToViewPatients(),
+        error => this.setState({status: 'Error: ' + error.message})
+      )
   }
 
   render() {
+    if (this.state.redirectToViewPatients) {
+      return <Redirect push to={"/"}/>;
+    }
+
     return (
       <div className="container">
         <form>
