@@ -20,7 +20,7 @@ class Patient(models.Model):
     LocationWard = models.CharField(max_length=30)
     LocationBay = models.IntegerField()
     LocationBed = models.IntegerField()
-    
+
     priority_choices = (
         (1, "High"),
         (2, "Standard"),
@@ -34,7 +34,6 @@ class Patient(models.Model):
         return str(self.LocationBay) + "." + str(self.LocationBed) + " " + self.LastName + " - " + self.HospitalNumber
 
 
-
 class PatientProblem(models.Model):
     Patient = models.ForeignKey(Patient, on_delete=models.PROTECT, related_name="Problems")
     Problem = models.CharField(max_length=255)
@@ -44,17 +43,15 @@ class PatientProblem(models.Model):
         return str(self.Patient.LastName) + " " + str(self.Patient.DateOfBirth) + " - " + self.Problem
 
 
-class JobStatus(models.Model):
-    job_status_description = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.job_status_description
-
-
 class Job(models.Model):
     Patient = models.ForeignKey(Patient, on_delete=models.PROTECT, related_name="Jobs")
     Job = models.CharField(max_length=255)
-    JobStatus = models.ForeignKey(JobStatus, on_delete=models.PROTECT)
+    JobStatusChoices = (
+        (1, "Not Done"),
+        (2, "In Progress"),
+        (3, "Completed"),
+    )
+    JobStatus = models.IntegerField(default=1)
 
     def __str__(self):
         return str(self.Patient) + " - " + str(self.Job) + " - " + str(self.JobStatus)
