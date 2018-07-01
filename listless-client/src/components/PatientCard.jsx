@@ -59,11 +59,13 @@ export default class PatientCard extends Component {
             </div>
 
           </div>
-          <div className="PatientCard-jobs">
-            <h2>Jobs</h2>
-              {patient.Jobs.map(job => <Job key={job.Id} job={job}/>)}
-          </div>
+
+        
+        <div className="PatientCard-jobs">
+          <h2>Jobs</h2>
+            {patient.Jobs.map(job => <Job key={job.Id} job={job} patient={patient}/>)}
         </div>
+      </div>
       </div>
     );
   }

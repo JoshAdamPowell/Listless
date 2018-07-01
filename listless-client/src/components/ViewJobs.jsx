@@ -18,7 +18,7 @@ export default class ViewJobs extends React.Component {
 
     generateJob(job) {
         return (
-            <Job job={job} />)
+            <Job job={job} patient={this.props.patient}/>)
     }
 
     addButton(){
