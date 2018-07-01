@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import ViewPatients from "./components/ViewPatients";
 
 import './App.css';
-import AddPatient from "./components/AddPatient";
-import AddJob from './components/AddJobModal';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import AddPatient from "./components/AddPatient";
 
 class App extends Component {
   render() {
@@ -14,10 +13,10 @@ class App extends Component {
           <h1>ListLess</h1>
         </header>
         <Router>
-          <div>
+          <div className="navigation">
             <ul>
               <li>
-                <Link to="/">View Patients</Link>
+                <Link to="/">Back to Patients</Link>
               </li>
               <li>
                 <Link to="/addPatient">Add Patient</Link>
@@ -28,7 +27,7 @@ class App extends Component {
             </ul>
             <Route exact path="/" component={ViewPatients}/>
             <Route path="/addPatient" component={AddPatient}/>
-            <Route path="/addJob" component={AddJob}/>
+            <Route path="/editPatient/:patientId" component={AddPatient} />
           </div>
         </Router>
       </div>

@@ -3,6 +3,7 @@ import ApiClient from '../services/ApiClient'
 import { jobStatuses } from '../utils/enums'
 
 import './AddJobModal.css'
+import './Job.css'
 
 export default class AddJobModal extends React.Component {
     constructor(props) {
@@ -26,9 +27,9 @@ export default class AddJobModal extends React.Component {
 
     generateSuggestedJobs() {
         return this.suggestedJobs.map((job) => {
-            return <button className="AddJobModal-suggested-job" onClick={() => this.submitJob(job)}>
+            return <div className="AddJobModal-suggested-job Job-job background-blue" onClick={() => this.submitJob(job)}>
                 {job}
-            </button>
+            </div>
         })
     }
 
@@ -55,7 +56,7 @@ export default class AddJobModal extends React.Component {
                             Custom Job
                         </label>
                         {this.generateSuggestedJobs()}
-                        <input ref={el => this.inputElement = el} />
+                        <input className="AddJobModal-input"ref={el => this.inputElement = el} />
                         <button onClick={() => this.submitJob(this.inputElement.value)}>
                             Add Job
                         </button>

@@ -1,115 +1,209 @@
 import React from 'react';
 import ApiClient from '../services/ApiClient'
+import './AddPatient.css';
 
 export default class AddPatient extends React.Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            form: {
-                firstNameField: {
-                    name: 'First Name',
-                    type: 'text'
-                },
-                lastNameField: {
-                    name: 'Last Name',
-                    type: 'text'
-                },
-                gender: {
-                    name: 'Gender',
-                    type: 'text'
-                },
-                dobField: {
-                    name: 'Date of Birth',
-                    type: 'date'
-                },
-                hospitalNumberField: {
-                    name: 'Hospital Number',
-                    type: 'text'
-                },
-                medicalHistoryField: {
-                    name: 'Medical History',
-                    type: 'text'
-                },
-                locationBay: {
-                    name: 'Location Bay',
-                    type: 'number'
-                },
-                locationBed: {
-                    name: 'Location Bed',
-                    type: 'number'
-                },
-                locationWard: {
-                    name: 'Location Ward',
-                    type: 'text'
-                }
-            },
-        };
+  patientToEdit;
+
+  constructor(props) {
+    super(props);
+
+    this.patientToEdit = this.props.match.params.patientId;
+
+    this.state = {
+      firstName: undefined,
+      lastName: undefined,
+      gender: "M",
+      dateOfBirth: undefined,
+      hospitalNumber: undefined,
+      medicalHistory: undefined,
+      locationBay: undefined,
+      locationBed: undefined,
+      locationWard: undefined
+    };
+  }
+
+  componentDidMount() {
+    if (this.patientToEdit) {
+      ApiClient.getPatient(this.patientToEdit)
+        .then(
+          patient => {
+            console.log("Patient", patient);
+            return this.setState({
+              firstName: patient.FirstName,
+              lastName: patient.LastName,
+              gender: patient.Gender,
+              dateOfBirth: patient.DateOfBirth,
+              hospitalNumber: patient.HospitalNumber,
+              medicalHistory: patient.MedicalHistory,
+              locationBay: patient.LocationBay,
+              locationBed: patient.LocationBed,
+              locationWard: patient.LocationWard
+            })
+          },
+          error => this.setState({error: error.message})
+        )
+    }
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  submit() {
+    console.log(this.state);
+
+    for (let field in this.fields) {
+      if (!this.state[field]) {
+        this.setState({
+          status: `You have to enter a ${this.fields[field].name} for the patient!`
+        });
+        return;
+      }
     }
 
-    submit() {
-      const {form} = this.state;
-      for (let field in form) {
-        let fieldObject = form[field];
-        console.log(fieldObject.ref.value);
+    const patient = {
+      FirstName: this.state.firstName,
+      LastName: this.state.lastName,
+      DateOfBirth: this.state.dateOfBirth,
+      Gender: this.state.gender,
+      HospitalNumber: this.state.hospitalNumber,
+      MedicalHistory: this.state.medicalHistory,
+      LocationBay: this.state.locationBay,
+      LocationBed: this.state.locationBay,
+      LocationWard: this.state.locationWard
+    };
 
-        if (!fieldObject.ref.value) {
-          this.setState({
-            status: `You have to enter a ${fieldObject.name} for the patient!`
-          });
-          return;
-        }
-      }
-      const patient = {
-        FirstName: form.firstNameField.ref.value,
-        LastName: form.lastNameField.ref.value,
-        DateOfBirth: form.dobField.ref.value,
-        Gender: form.gender.ref.value,
-        HospitalNumber: form.hospitalNumberField.ref.value,
-        MedicalHistory: form.medicalHistoryField.ref.value,
-        LocationBay: form.locationBay.ref.value,
-        LocationBed: form.locationBed.ref.value,
-        LocationWard: form.locationWard.ref.value
-      };
+    if (this.patientToEdit) {
+      ApiClient.putPatient(this.patientToEdit, patient)
+        .then(
+          result => this.setState({status: 'Patient updated successfully!'}),
+          error => this.setState({status: 'Error: ' + error.message})
+        )
+    } else {
       ApiClient.postPatient(patient)
         .then(
-          patient => ApiClient.postJob({
-            Patient: patient.id,
-            Job: "Bloods"
-          })
+          result => this.setState({status: 'Patient added successfully!'}),
+          error => this.setState({status: 'Error: ' + error.message})
         )
-        .then(
-        result => this.setState({status: 'Patient added successfully!'}),
-        error => this.setState({status: 'Error: ' + error.message})
-      )
     }
+  }
 
-    generateForm() {
-        const { form } = this.state;
-        const forms = [];
-        for (let field in form) {
-            let fieldObject = form[field];
-            forms.push(this.generateInput(fieldObject))
-        }
-        return forms;
-    }
-
-    generateInput(field) {
-        return (<div>
-            {field.name}
-            <input type={field.type} onChange={() => this.updateInputValue} ref={(el) => field.ref = el} />
-        </div>)
-    }
-
-    render() {
-        const { form } = this.state;
-        return (
-            <div>
-                {this.generateForm()}
-                <input type='submit' onClick={() => this.submit()} />
-                <div>
-                    {this.state.status ? this.state.status : null}
-                </div>
-            </div>);
-    }
+  render() {
+    return (
+      <div className="container">
+        <form>
+          <label className="list-item">
+            <p className="list-name">First Name:</p>
+                <div className="list-input">
+            <input
+              name="firstName"
+              type="text"
+              value={this.state.firstName}
+              onChange={(event) =>this.handleInputChange(event)}/></div>
+          </label>
+          <br/>
+          <label className="list-item">
+            <p className="list-name">Last name:</p>
+            <div className="list-input">
+            <input
+              name="lastName"
+              type="text"
+              value={this.state.lastName}
+              onChange={(event) =>this.handleInputChange(event)}/></div>
+          </label>
+          <br/>
+          <label className="list-item">
+            <p className="list-name">Gender:</p>
+            <div className="list-input">
+                <select
+                name="gender"
+                value={this.state.gender}
+                onChange={(event) => this.handleInputChange(event)}>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+                </select>
+            </div>
+          </label>
+          <br/>
+          <label className="list-item">
+            <p className="list-name">Date of Birth:</p>
+            <div className="list-input">
+            <input
+              name="dateOfBirth"
+              type="date"
+              value={this.state.dateOfBirth}
+              onChange={(event) =>this.handleInputChange(event)}/></div>
+          </label>
+          <br/>
+          <label className="list-item">
+            <p className="list-name">Hospital number:</p>
+            <div className="list-input">
+            <input
+              name="hospitalNumber"
+              type="number"
+              value={this.state.hospitalNumber}
+              onChange={(event) => this.handleInputChange(event)}/>
+              </div>
+          </label>
+          <br/>
+          <label className="list-item">
+            <p className="list-name">Medical History:</p>
+            <div className="list-input">
+            <input
+              name="medicalHistory"
+              type="text"
+              value={this.state.medicalHistory}
+              onChange={(event) =>this.handleInputChange(event)}className="medical-history"/>
+            </div>
+          </label>
+          <br/>
+          <label className="list-item">
+            <p className="list-name">Location Bay:</p>
+            <div className="list-input">
+            <input
+              name="locationBay"
+              type="number"
+              value={this.state.locationBay}
+              onChange={(event) => this.handleInputChange(event)}/>
+              </div>
+          </label>
+          <br/>
+          <label className="list-item">
+            <p className="list-name">Location Bed:</p>
+            <div className="list-input">
+            <input
+              name="locationBed"
+              type="number"
+              value={this.state.locationBed}
+              onChange={(event) => this.handleInputChange(event)}/>
+              </div>
+          </label>
+          <br/>
+          <label className="list-item">
+            <p className="list-name">Location Ward:</p>
+            <div className="list-input">
+            <input
+              name="locationWard"
+              type="text"
+              value={this.state.locationWard}
+              onChange={(event) => this.handleInputChange(event)}/>
+              </div>
+          </label>
+        </form>
+        <input className="submit" type='submit' onClick={() => this.submit()}/>
+        <div>
+          {this.state.status ? this.state.status : null}
+        </div>
+      </div>
+    );
+  }
 }

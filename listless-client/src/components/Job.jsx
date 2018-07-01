@@ -1,5 +1,6 @@
 import React from 'react';
 import Reset from '../Icons/reset.svg';
+import ApiClient from '../services/ApiClient'
 
 import './Job.css'
 
@@ -34,8 +35,9 @@ export default class Job extends React.Component {
     }
 
     changeStatus() {
-        const currentStatus = this.state.job.Status;
-        let newStatus;
+        const { patient } = this.props;
+        const currentStatus = this.state.job.JobStatus;
+        let newStatus = currentStatus;
         switch (currentStatus) {
             case this.JobStates.NotDone:
                 newStatus = this.JobStates.Done;
@@ -44,9 +46,15 @@ export default class Job extends React.Component {
                 if (window.confirm("Please confirm you've checked the results, this job will be hidden after today.")) {
                     newStatus = this.JobStates.ResultsChecked
                 }
+                break;
         }
         const job = this.state.job;
-        job.Status = newStatus;
+        job.JobStatus = newStatus;
+        ApiClient.putJob(job.id, {
+            'Job': job.Job,
+            'Patient': patient.id,
+            'JobStatus' : newStatus
+        })
         this.setState({
             job: job
         })
@@ -54,7 +62,7 @@ export default class Job extends React.Component {
 
 
     generateReset() {
-        if (this.state.job.Status === this.JobStates.ResultsChecked) {
+        if (this.state.job.JobStatus === this.JobStates.ResultsChecked) {
             return (<img onClick={(event) => {
                 event.stopPropagation();
                 this.onReset()
@@ -64,7 +72,7 @@ export default class Job extends React.Component {
 
     onReset() {
         const job = this.state.job;
-        job.Status = this.JobStates.NotDone
+        job.JobStatus = this.JobStates.NotDone
         this.setState({
             job: job
         });
@@ -72,8 +80,8 @@ export default class Job extends React.Component {
 
     render() {
         const { job } = this.state;
-        return (job ? <div className={'Job-job ' + this.getColour(job.Status)} onClick={(() => this.changeStatus())}>
-            {job.Name}
+        return (job ? <div className={'Job-job ' + this.getColour(job.JobStatus)} onClick={(() => this.changeStatus())}>
+            {job.Job}
             {this.generateReset()}
         </div> : null)
     }
