@@ -1,21 +1,89 @@
 .PatientCard-container {
   display: flex;
-  margin: 20px;
+  margin: 16px;
   background: white;
+  padding: 30px;
+  text-align: left;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(201,201,201,0.50);
+}
+
+.PatientCard-container h2 {
+  font-size: 20px;
+  width: 100%;
+  margin: 0 0 20px;
 }
 
 .PatientCard-patient-details,
 .PatientCard-current-problems,
 .PatientCard-jobs {
-  flex: 0 0 20%;
+  flex: 0 0 18%;
+  margin: 1%;
+  overflow: hidden;
 }
 
 .PatientCard-medical-history {
-  flex: 0 0 40%;
+  flex: 0 0 38%;
+  margin: 1%;
 }
 
-.PatientCard-gender {
+.PatientCard-patient-details-ward-title {
+  font-size: 12px;
+  margin: 0 0 4px;
+  color: #999;
+}
+
+.PatientCard-patient-details-ward {
+  font-size: 30px;
+  margin: 0;
+  color: #444;
+}
+
+.PatientCard-patient-details-name {
+  font-size: 26px;
+  margin: 14px 0 14px 0;
+}
+
+.PatientCard-patient-details-sex-age-block{
+  display: flex;
+  align-items: center;
+}
+
+.PatientCard-patient-details-sex {
+  max-width: 24px;
+  max-height: 32px;
+  margin-right: 10px;
+}
+
+.PatientCard-patient-details-age {
+  font-size: 24px;
+  margin: 0;
+  color: #888;
+}
+
+.PatientCard-patient-details-gender {
   background-color: blue;
   color: white;
   font-weight: bold;
+  padding: 10px;
+}
+
+.PatientCard-patient-details-hospital-number{
+  font-size: 24px;
+  margin: 14px 0 0;
+}
+
+.PatientCard-current-problems-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.PatientCard-current-problems-single {
+  background: #AE2573;
+  margin: 0 10px 10px 0;
+  padding: 6px 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 3px;
 }
