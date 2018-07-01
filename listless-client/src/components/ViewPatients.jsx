@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PatientCard from './PatientCard';
+import PatientFilter from './PatientFilter';
 import ApiClient from '../services/ApiClient';
+import _ from 'lodash';
+
+import './ViewPatients.css';
 
 export default class ViewPatients extends Component {
   constructor(props) {
@@ -16,8 +20,25 @@ export default class ViewPatients extends Component {
         )
   }
 
+  patientFilter(patient) {
+    const { jobTypeFilter, wardFilter } = this.state;
+
+    if (jobTypeFilter && !patient.Jobs.map(job => job.Job).includes(jobTypeFilter)) {
+      return false;
+    }
+
+    if (wardFilter && patient.LocationWard !== wardFilter) {
+      return false;
+    }
+
+    return true;
+  }
+
   render() {
-    const {patients, error} = this.state;
+    const { patients, error, jobTypeFilter, wardFilter } = this.state;
+
+    const jobTypes = patients ? _.flatMap(patients, patient => patient.Jobs.map(job => job.Job)) : [];
+    const wards = patients ? patients.map(patient => patient.LocationWard) : [];
 
     if (error) {
       return (
@@ -30,7 +51,21 @@ export default class ViewPatients extends Component {
     if (patients) {
       return (
         <div className="ViewPatients-container">
-          {patients.map(patient => <PatientCard key={patient.id} patient={patient}/>)}
+          <div className="ViewPatients-filters">
+            <PatientFilter
+                title={'Job type'}
+                filterValue={jobTypeFilter}
+                options={[ ...new Set(jobTypes) ]}
+                onChange={jobType => this.setState({ jobTypeFilter: jobType })}/>
+            <PatientFilter
+                title={'Ward'}
+                filterValue={wardFilter}
+                options={[ ...new Set(wards) ]}
+                onChange={ward => this.setState({ wardFilter: ward })}/>
+          </div>
+          {patients
+              .filter(patient => this.patientFilter(patient))
+              .map(patient => <PatientCard key={patient.id} patient={patient}/>)}
         </div>);
     }
     return <div className="ViewPatients-container">
