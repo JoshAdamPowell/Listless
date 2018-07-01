@@ -1,6 +1,6 @@
-import react from 'react';
+import React from 'react';
 import ApiClient from '../services/ApiClient'
-import JobStatuses from '../utils/enums'
+import { jobStatuses } from '../utils/enums'
 
 import './AddJobModal.css'
 
@@ -20,7 +20,7 @@ export default class AddJobModal extends React.Component {
     submitJob(name) {
         const job = {
             Name: name,
-            Status: JobStatuses.notDone
+            Status: jobStatuses.notDone
         }
         ApiClient.postJob(job)
         this.closeModal()
@@ -40,12 +40,11 @@ export default class AddJobModal extends React.Component {
         })
     }
 
-    openModal(){
+    openModal() {
         this.setState({
             active: true
         })
     }
-
 
     submitForm() {
         if (this.inputElement.value) {
@@ -58,29 +57,29 @@ export default class AddJobModal extends React.Component {
     render() {
         const { patient } = this.props;
         const { active } = this.state;
-        if (active){
-        return (
-            <div className={"AddJobModal-modal"}>
-                <div className="AddJobModal-modal-content">
-                    <span className="AddJobModal-title">
-                        Create Job
+        if (active) {
+            return (
+                <div className={"AddJobModal-modal"}>
+                    <div className="AddJobModal-modal-content">
+                        <span className="AddJobModal-title">
+                            Create Job
                 </span>
-                    <span className="AddJobModal-patient-name">
-                        {patient.Name}
-                    </span>
-                    {this.generateSuggestedJobs()}
-                    <label>
-                        Custom Job
+                        <span className="AddJobModal-patient-name">
+                            {patient.Name}
+                        </span>
+                        {this.generateSuggestedJobs()}
+                        <label>
+                            Custom Job
                         </label>
-                    <input ref={el => this.inputElement = el} />
-                    <button onClick>
-                        Add Job
+                        <input ref={el => this.inputElement = el} />
+                        <button onClick>
+                            Add Job
                         </button>
+                    </div>
                 </div>
-            </div>
-        )
-    } else {
-        return <button className='AddJobModal-add-job-button' onClick={()=> this.openModal}> Add Job </button>
-    }
+            )
+        } else {
+            return <button className='AddJobModal-add-job-button' onClick={() => this.openModal}> Add Job </button>
+        }
     }
 }

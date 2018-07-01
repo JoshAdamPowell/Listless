@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import getAge from 'get-age';
+import AddJobModal from './AddJobModal'
 
 import './PatientCard.css';
 
@@ -29,6 +30,7 @@ export default class PatientCard extends Component {
         </div>
         <div className="PatientCard-jobs">
           <h2>Jobs</h2>
+          <AddJobModal patient={patient} />
             {patient.Jobs.map(job => <p key={job.Id}>{job.Job}</p>)}
         </div>
       </div>
