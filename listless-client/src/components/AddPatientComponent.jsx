@@ -71,7 +71,14 @@ export default class AddPatientComponent extends React.Component {
         LocationBed: form.locationBed.ref.value,
         LocationWard: form.locationWard.ref.value
       };
-      ApiClient.postPatient(patient).then(
+      ApiClient.postPatient(patient)
+        .then(
+          patient => ApiClient.postJob({
+            Patient: patient.id,
+            Job: "Bloods"
+          })
+        )
+        .then(
         result => this.setState({status: 'Patient added successfully!'}),
         error => this.setState({status: 'Error: ' + error.message})
       )
