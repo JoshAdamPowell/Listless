@@ -11,7 +11,7 @@ export default class ViewPatients extends Component {
   componentDidMount() {
     ApiClient.getPatientsList()
         .then(
-            patients => this.setState({ patients: patients }),
+            patients => this.setState({ patients: patients.filter(patient => patient.PatientActive) }),
             error => this.setState({ error: error.message })
         )
   }
