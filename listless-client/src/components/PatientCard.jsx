@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import getAge from 'get-age';
+import AddJobModal from './AddJobModal'
 import Job from './Job'
 
 import { patientPriorities, patientPriorityText } from "../utils/enums";
@@ -78,7 +79,8 @@ export default class PatientCard extends Component {
         </div>
         <div className="PatientCard-jobs">
           <h2>Jobs</h2>
-          {patient.Jobs.map(job => <Job key={job.Id} job={job} patient={patient}/>)}
+            {patient.Jobs.map(job => <Job job={job} patient={patient}/>)}
+            <AddJobModal patient={patient} />
         </div>
       </div>
       </div>
