@@ -8,6 +8,18 @@
   background-color: #222;
   padding: 20px;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-title {
+  margin: 0 0 0 10px;
+}
+
+.App-logo {
+  height: 50px;
+  width: 50px;
 }
 
 .navigation ul {
