@@ -10,14 +10,12 @@ export default class PatientCard extends Component {
     // TODO: remove this once the API contains the correct info
     patient.Age = 80;
     patient.FirstName = 'John';
-    patient.Ward = '7';
-    patient.Bed = '03';
     patient.Gender = 'F';
 
     return (
       <div className="PatientCard-container">
         <div className="PatientCard-patient-details">
-          <p>{patient.Ward} / {patient.Bed}</p>
+          <p>{patient.LocationWard} {patient.LocationBay}.{patient.LocationBed}</p>
           <p>{patient.FirstName} {patient.LastName}</p>
           <p><span className="PatientCard-gender">{patient.Gender}</span> {patient.Age}</p>
           <p>{patient.HospitalNumber}</p>
