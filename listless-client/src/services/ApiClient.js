@@ -20,9 +20,21 @@ class ApiClient {
       .then(response => response.data)
   }
 
-  static patchPatient(patientId, patientData) {
+  static putPatient(patientId, patientData) {
     const url = Config.apiUrl + '/patient/' + patientId + '/';
-    return axios.patch(url, patientData)
+    return axios.put(url, patientData)
+      .then(response => response.data)
+  }
+
+  static postJob(jobData) {
+    const url = Config.apiUrl + '/job/';
+    return axios.post(url, jobData)
+      .then(response => response.data)
+  }
+
+  static putJob(jobId, jobData) {
+    const url = Config.apiUrl + '/job/' + jobId + '/';
+    return axios.put(url, jobData)
       .then(response => response.data)
   }
 }
