@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ApiClient from "./services/ApiClient";
+import ViewJobs from './components/ViewJobs'
 
 class App extends Component {
 
@@ -15,6 +16,23 @@ class App extends Component {
   }
 
   render() {
+    const fakeJobs = [
+      {
+    Name: 'Bloods',
+    Status: 1,
+    ID: 1
+  },
+  {
+    Name: 'X ray',
+    Status: 2,
+    ID: 1
+  },
+  {
+    Name: 'Physio',
+    Status: 3,
+    ID: 1
+  }
+    ];
     return (
       <div className="App">
         {this.state.error &&
@@ -32,6 +50,7 @@ class App extends Component {
         <p>
           {this.state.patientsList.map(patient => patient.LastName).join(', ')}
         </p>
+        <ViewJobs jobs={fakeJobs} />
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ApiClient from '../services/ApiClient'
 
-export default class AddPatientComponent extends React.Component {
+export default class AddPatient extends React.Component {
     constructor(props) {
         super(props)
 
