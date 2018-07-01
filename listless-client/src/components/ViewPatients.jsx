@@ -5,6 +5,7 @@ import ApiClient from '../services/ApiClient';
 import _ from 'lodash';
 
 import './ViewPatients.css';
+import {patientPriorities, patientPriorityText} from "../utils/enums";
 
 export default class ViewPatients extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export default class ViewPatients extends Component {
   }
 
   patientFilter(patient) {
-    const { jobTypeFilter, wardFilter } = this.state;
+    const { jobTypeFilter, wardFilter, priorityFilter } = this.state;
 
     if (jobTypeFilter && !patient.Jobs.map(job => job.Job).includes(jobTypeFilter)) {
       return false;
@@ -31,11 +32,15 @@ export default class ViewPatients extends Component {
       return false;
     }
 
+    if (priorityFilter && patient.PatientPriority.toString() !== priorityFilter) {
+      return false;
+    }
+
     return true;
   }
 
   render() {
-    const { patients, error, jobTypeFilter, wardFilter } = this.state;
+    const { patients, error, jobTypeFilter, wardFilter, priorityFilter } = this.state;
 
     const jobTypes = patients ? _.flatMap(patients, patient => patient.Jobs.map(job => job.Job)) : [];
     const wards = patients ? patients.map(patient => patient.LocationWard) : [];
@@ -62,6 +67,12 @@ export default class ViewPatients extends Component {
                 filterValue={wardFilter}
                 options={[ ...new Set(wards) ]}
                 onChange={ward => this.setState({ wardFilter: ward })}/>
+            <PatientFilter
+              title={'Priority'}
+              filterValue={priorityFilter}
+              options={[ patientPriorities.HIGH, patientPriorities.FIT_FOR_DISCHARGE ]}
+              onChange={priority => this.setState({ priorityFilter: priority })}
+              displayTextFn={patientPriorityText}/>
           </div>
           {patients
               .filter(patient => this.patientFilter(patient))

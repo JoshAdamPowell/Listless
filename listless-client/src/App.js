@@ -13,10 +13,10 @@ class App extends Component {
           <h1>ListLess</h1>
         </header>
         <Router>
-          <div>
+          <div className="navigation">
             <ul>
               <li>
-                <Link to="/">View Patients</Link>
+                <Link to="/">Back to Patients</Link>
               </li>
               <li>
                 <Link to="/addPatient">Add Patient</Link>

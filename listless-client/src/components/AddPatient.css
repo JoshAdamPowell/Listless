@@ -1,0 +1,54 @@
+input {
+    background: #FBFBFB;
+    /* box-shadow: 0 2px 2px 0 rgba(201,201,201,0.50); */
+    border-radius: 4px;
+    border: none;
+    width: 100px;
+}
+
+.container{
+    max-width: 900px;
+    margin: auto;
+    padding: 0 40px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+}
+
+.list-name {
+    width: 200px;
+    text-align: left;
+    font-size: 18px;
+    /* font-weight: 500; */
+    margin: 0;
+    /* max-width: 300px; */
+}
+
+.list-input {
+    width: 100%;
+}
+
+.list-input input {
+    font-size: 18px;
+    padding: 12px 18px;
+    width: 100%;
+    display: block;
+
+}
+
+.medical-history {
+    height: 200px;
+}
+
+.submit {
+    max-width: 500px;
+    width: 100%;
+    background: #005EB8;
+    height: 60px;
+    color: #fff;
+    margin: 60px 0;
+    font-size: 22px;
+}
