@@ -13,6 +13,8 @@ class Patient(models.Model):
     LastName = models.CharField(max_length=50)
     DateOfBirth = models.DateField()
     MedicalHistory = models.TextField()
+    def __str__(self):
+        return self.LastName
     
 
 
@@ -26,9 +28,15 @@ class PatientProblem(models.Model):
 
 class JobStatus(models.Model):
     job_status_description = models.CharField(max_length=255)
+    def __str__(self):
+        return self.job_status_description
+    
 
 class Job(models.Model):
-    Patient = models.ForeignKey(Patient, on_delete=models.PROTECT)
+    Patient = models.ForeignKey(Patient, on_delete=models.PROTECT, related_name="Jobs")
     Job = models.CharField(max_length=255)
     JobStatus = models.ForeignKey(JobStatus, on_delete=models.PROTECT)
+    def __str__(self):
+        return str(self.Patient)+" - "+str(self.Job)+" - "+str(self.JobStatus)
+    
  
