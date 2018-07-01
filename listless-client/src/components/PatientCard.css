@@ -1,0 +1,15 @@
+.PatientCard-container {
+  display: flex;
+  margin: 20px;
+  background: white;
+}
+
+.PatientCard-patient-details,
+.PatientCard-current-problems,
+.PatientCard-jobs {
+  flex: 0 0 20%;
+}
+
+.PatientCard-medical-history {
+  flex: 0 0 40%;
+}

@@ -55,7 +55,6 @@ export default class AddPatientComponent extends React.Component {
             this.setState({ status: 'Patient added successfully!' }
             )
         )
-
     }
 
     generateForm() {
