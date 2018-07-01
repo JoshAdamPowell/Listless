@@ -15,15 +15,18 @@ export default class AddJobModal extends React.Component {
     }
 
     submitJob(name) {
+        const {patient} = this.props;
         const job = {
             Job: name,
+            Patient: patient.id
         }
         ApiClient.postJob(job)
+        this.setState()
     }
 
     generateSuggestedJobs() {
         return this.suggestedJobs.map((job) => {
-            <button className="AddJobModal-suggested-job" onClick={this.submitJob(job)}>
+            return <button className="AddJobModal-suggested-job" onClick={() => this.submitJob(job)}>
                 {job}
             </button>
         })
@@ -51,8 +54,9 @@ export default class AddJobModal extends React.Component {
                         <label>
                             Custom Job
                         </label>
+                        {this.generateSuggestedJobs()}
                         <input ref={el => this.inputElement = el} />
-                        <button onClick>
+                        <button onClick={() => this.submitJob(this.inputElement.value)}>
                             Add Job
                         </button>
                     </div>
