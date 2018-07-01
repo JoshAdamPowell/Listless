@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ViewPatients from "./components/ViewPatients";
 
 import './App.css';
-import AddPatientComponent from "./components/AddPatientComponent";
+import AddPatient from "./components/AddPatient";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
@@ -23,7 +23,7 @@ class App extends Component {
               </li>
             </ul>
             <Route exact path="/" component={ViewPatients}/>
-            <Route path="/addPatient" component={AddPatientComponent}/>
+            <Route path="/addPatient" component={AddPatient}/>
           </div>
         </Router>
       </div>
