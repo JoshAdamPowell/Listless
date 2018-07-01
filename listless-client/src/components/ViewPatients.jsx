@@ -58,15 +58,15 @@ export default class ViewPatients extends Component {
         <div className="ViewPatients-container">
           <div className="ViewPatients-filters">
             <PatientFilter
-                title={'Job type'}
-                filterValue={jobTypeFilter}
-                options={[ ...new Set(jobTypes) ]}
-                onChange={jobType => this.setState({ jobTypeFilter: jobType })}/>
-            <PatientFilter
                 title={'Ward'}
                 filterValue={wardFilter}
                 options={[ ...new Set(wards) ]}
                 onChange={ward => this.setState({ wardFilter: ward })}/>
+            <PatientFilter
+                title={'Job type'}
+                filterValue={jobTypeFilter}
+                options={[ ...new Set(jobTypes) ]}
+                onChange={jobType => this.setState({ jobTypeFilter: jobType })}/>
             <PatientFilter
               title={'Priority'}
               filterValue={priorityFilter}

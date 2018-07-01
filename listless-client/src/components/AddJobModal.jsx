@@ -48,13 +48,10 @@ export default class AddJobModal extends React.Component {
                     <div className="AddJobModal-modal-content">
                         <span className="AddJobModal-title">
                             Create Job
-                </span>
+                        </span>
                         <span className="AddJobModal-patient-name">
                             {patient.Name}
                         </span>
-                        <label>
-                            Custom Job
-                        </label>
                         {this.generateSuggestedJobs()}
                         <input className="AddJobModal-input"ref={el => this.inputElement = el} />
                         <button onClick={() => this.submitJob(this.inputElement.value)}>
