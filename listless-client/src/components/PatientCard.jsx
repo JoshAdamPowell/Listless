@@ -7,11 +7,6 @@ export default class PatientCard extends Component {
   render() {
     const { patient } = this.props;
 
-    // TODO: remove this once the API contains the correct info
-    patient.Age = 80;
-    patient.FirstName = 'John';
-    patient.Gender = 'F';
-
     return (
       <div className="PatientCard-container">
         <div className="PatientCard-patient-details">
