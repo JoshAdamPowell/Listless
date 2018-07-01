@@ -44,8 +44,21 @@
   margin: 14px 0 14px 0;
 }
 
+.PatientCard-patient-details-sex-age-block{
+  display: flex;
+  align-items: center;
+}
+
 .PatientCard-patient-details-sex {
-  max-width: 100px;
+  max-width: 24px;
+  max-height: 32px;
+  margin-right: 10px;
+}
+
+.PatientCard-patient-details-age {
+  font-size: 24px;
+  margin: 0;
+  color: #888;
 }
 
 .PatientCard-patient-details-gender {
@@ -53,6 +66,11 @@
   color: white;
   font-weight: bold;
   padding: 10px;
+}
+
+.PatientCard-patient-details-hospital-number{
+  font-size: 24px;
+  margin: 14px 0 0;
 }
 
 .PatientCard-current-problems-list {
