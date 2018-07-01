@@ -35,6 +35,7 @@ export default class Job extends React.Component {
     }
 
     changeStatus() {
+        console.log('a')
         const { patient } = this.props;
         const currentStatus = this.state.job.JobStatus;
         let newStatus = currentStatus;
@@ -50,6 +51,9 @@ export default class Job extends React.Component {
         }
         const job = this.state.job;
         job.JobStatus = newStatus;
+        this.setState({
+            job: job
+        })
         ApiClient.putJob(job.id, {
             'Job': job.Job,
             'Patient': patient.id,
